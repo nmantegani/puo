@@ -1,0 +1,109 @@
+@prefix puo: <http://puo.com/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+
+##################################
+#### Classes                  ####
+##################################
+
+puo:Attribute a owl:Class ;
+    owl:disjointWith puo:Occurrence, puo:Substratum, puo:TimeInterval .
+
+puo:Occurrence a owl:Class ;
+    owl:disjointWith puo:Attribute, puo:Substratum, puo:TimeInterval .
+
+puo:Substratum a owl:Class ;
+    owl:disjointWith puo:Attribute, puo:Occurrence, puo:TimeInterval .
+
+puo:TimeInterval a owl:Class ;
+    owl:disjointWith puo:Attribute, puo:Occurrence, puo:Substratum .
+
+##############
+
+puo:Agent a owl:Class ;
+    rdfs:subClassOf puo:DeterminateObject .
+
+puo:Data a owl:Class ;
+    rdfs:subClassOf puo:Stuff, puo:NonphysicalThing .
+
+puo:Dataset a owl:Class ;
+    rdfs:subClassOf puo:NonphysicalObject .
+
+puo:Datastore a owl:Class ;
+    rdfs:subClassOf puo:DeterminateObject .
+
+puo:DeterminateObject a owl:Class ;
+    rdfs:subClassOf puo:Substratum ;
+    owl:disjointWith puo:Stuff .
+
+puo:Event a owl:Class ;
+    rdfs:subClassOf puo:Occurrence .
+
+puo:NonphysicalObject a owl:Class ;
+    owl:equivalentClass [owl:intersectionOf (puo:DeterminateObject puo:NonphysicalThing)] ;
+    # rdfs:subClassOf puo:NonphysicalThing, puo:DeterminateObject 
+.
+
+puo:NonphysicalThing a owl:Class ;
+    rdfs:subClassOf puo:Substratum ;
+    owl:disjointWith puo:PhysicalThing .
+
+puo:Organization a owl:Class ;
+    rdfs:subClassOf puo:Agent ;
+    owl:disjointWith puo:Person .
+
+puo:Person a owl:Class ;
+    rdfs:subClassOf puo:Agent ;
+    owl:disjointWith puo:Organization .
+
+puo:PhysicalSubstance a owl:Class ;
+    owl:equivalentClass [owl:intersectionOf (puo:Stuff puo:PhysicalThing)] ;
+    # rdfs:subClassOf puo:Stuff, puo:PhysicalThing 
+.
+
+puo:PhysicalObject a owl:Class ;
+    owl:equivalentClass [owl:intersectionOf (puo:DeterminateObject puo:PhysicalThing)] ;
+    # rdfs:subClassOf puo:DeterminateObject, puo:PhysicalThing 
+.
+
+puo:PhysicalThing a owl:Class ;
+    rdfs:subClassOf puo:Substratum ;
+    owl:disjointWith puo:NonphysicalThing .
+
+puo:Quantity a owl:Class ;
+    rdfs:subClassOf puo:Attribute .
+
+puo:Relationship a owl:Class ;
+    rdfs:subClassOf puo:Occurrence ;
+    owl:disjointWith puo:Event .
+
+puo:Stuff a owl:Class ;
+    rdfs:subClassOf puo:Substratum ;
+    owl:disjointWith puo:DeterminateObject .
+
+puo:UnitAttribute a owl:Class ;
+    rdfs:subClassOf puo:Attribute ;
+    skos:note "Orthogonal to siblings." .
+
+puo:UnitOfMeasure a owl:Class ;
+    rdfs:subClassOf puo:Attribute .
+
+
+##############
+
+
+##################################
+#### Object Properties        ####
+##################################
+
+##################################
+#### Datatype Properties      ####
+##################################
+
+##################################
+#### Annotation Properties    ####
+##################################
